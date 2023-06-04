@@ -1,13 +1,143 @@
-body {
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,900&display=swap');
+*{
+  box-sizing: border-box;
+  border: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  font-family: 'Poppins','Roboto', sans-serif;
+  color: #4f4444;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  max-width: 80%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.App{
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh; */
+}
+
+.signOut{
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  display: block;
+  font-size: 18px;
+  font-weight: normal;
+  box-shadow: 0 9px 18px rgba(0,0,0,0.2);
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px 30px;
+  color: white;
+  background: rgba(0, 0, 255, 0.8);
+  transition: all 0.2s ease-out 0s;
+  font-weight: bold;
+}
+
+.button1 {
+  margin-right: 30px;
+  display: block;
+  font-size: 18px;
+  font-weight: normal;
+  border-radius: 8px ;
+  text-align: center;
+  padding: 10px 30px;
+  transition: all 0.2s ease-out 0s;
+  font-weight: bold;
+  
+}
+
+
+.button:hover {
+  background: rgba(0, 0, 255, 1);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+}
+
+
+.Container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main{
+  width: 800px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  padding: 25px 20px;
+}
+
+.text-left{
+  text-align: right;
+}
+
+.main h3{
+  text-align: center;
+  font-size: bold;
+  color:#242222;
+  font-size: 24px;
+
+}
+
+@media screen and (max-width: 768px){
+  .header{
+    width: 90%;
+  }
+  .header h1{
+    font-size: 20px;
+  }
+  .main{
+    width: 500px;
+  }
+}
+
+.form__group {
+  flex: 1;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #242222;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+
+.hr{
+  width:100%;
+  height: 1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.form{
+  display: flex;
+  margin-top: 50px;
+}
+
+
+.button3{
+  font-weight: normal;
+  border-radius: 8px ;
+  text-align: center;
+  border:1px solid black;
+  padding: 0px 30px;
 }
