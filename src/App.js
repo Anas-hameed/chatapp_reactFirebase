@@ -70,16 +70,18 @@ function App() {
 			if (!playerExists) {
 				addDoc(collection(db, "users"), {
 					id: userId,
-					playerId: player
+					playerId: player,
+					date: new Date(),
 				});
 				console.log("player added to db");
 
 			}
 		}
-		else if(player){
+		else if(player && userId){
 			addDoc(collection(db, "users"), {
 				id: userId,
-				playerId: player
+				playerId: player,
+				date: new Date(),
 			});
 			console.log("player added to db");
 		}
