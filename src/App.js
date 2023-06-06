@@ -62,13 +62,14 @@ function App() {
 
 
 	useEffect(() => {
+		const userId = user?.uid;
 		console.log("player::", playerList);
 		// add player to db if not exists in playerList
 		if (playerList.length > 0) {
 			const playerExists = playerList.find((p) => p.uid === user.uid);
 			if (!playerExists) {
 				addDoc(collection(db, "users"), {
-					id: user.uid,
+					id: userId,
 					playerId: player
 				});
 				console.log("player added to db");
