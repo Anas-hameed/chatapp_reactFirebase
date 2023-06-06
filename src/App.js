@@ -76,6 +76,14 @@ function App() {
 
 			}
 		}
+		else if(player){
+			addDoc(collection(db, "users"), {
+				id: userId,
+				playerId: player
+			});
+			console.log("player added to db");
+		}
+
 	}, [playerList, player]);
 
 
