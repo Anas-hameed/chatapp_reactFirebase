@@ -16,7 +16,7 @@ function App() {
 
 	useEffect(() => {
 		OneSignal.init({
-			appId: "078b26b0-4ad5-4604-8188-d091edff87b1"
+			appId: "1e5fcb25-10c5-465c-a2a3-d7f7b5893af8"
 		});
 		console.log("OneSignal Initialized");
 		const q = query(collection(db, "messages"), orderBy("timestamp"));
@@ -112,14 +112,14 @@ function App() {
 	"en": "New Message from ${user.displayName}",
 	"es": "Spanish Message"
 	  },
-  "name": "Messaging","app_id": "078b26b0-4ad5-4604-8188-d091edff87b1"
+  "name": "Messaging","app_id": "1e5fcb25-10c5-465c-a2a3-d7f7b5893af8"
 }
 `;
 
 		const response = await fetch(url, {
 			method: 'POST',
 			headers: {
-				'Authorization': 'Basic NjEwYzkyNDUtNWZlMS00NDFlLThkZjItY2E3YWViOWY1MTVj',
+				'Authorization': 'Basic ZjgxZGQ4NzktNThlYy00YzY1LWFlMzUtYjAwMTUwYjZjNDIw',
 				'accept': 'application/json',
 				'content-type': 'application/json',
 			},
