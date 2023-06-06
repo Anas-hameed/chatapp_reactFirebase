@@ -4,7 +4,6 @@ import { collection, onSnapshot, addDoc, orderBy, query } from "firebase/firesto
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "./SignIn";
 import SignOut from "./SignOut";
-import axios from 'axios';
 import OneSignal from 'react-onesignal';
 
 
@@ -85,6 +84,8 @@ function App() {
 		// fillter playerList to get playerId of user without current user
 		const playerListWithoutCurrentUser = playerList.filter((p) => {
 			if (p.uid !== user.uid) return p.playerId;
+			// return not
+			return null;
 		});
 
 		console.log("playerListWithoutCurrentUser::", playerListWithoutCurrentUser);
