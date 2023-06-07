@@ -101,7 +101,7 @@ function App() {
 
 		console.log("playerListWithoutCurrentUser::", playerListWithoutCurrentUser);
 		// create a comma seperated string of playerIds
-		const playerIds = playerListWithoutCurrentUser.map((p) => p.playerId).join(",");
+		const playerIds = playerListWithoutCurrentUser.map((p) => p.playerId).join('","');
 		console.log("playerIds::", playerIds);
 		// keep input1 to max of 30 characters
 		const input1= input.length > 30 ? input.substring(0, 30)+"..." : input+"...";
