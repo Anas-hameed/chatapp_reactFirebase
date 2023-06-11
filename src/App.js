@@ -49,8 +49,8 @@ function App() {
 		console.log("OneSignal Id::", playerId);	
 		if(!playerId){
 			OneSignal.showHttpPermissionRequest();
-			setTimeout(() => {
-				const playerId= getplayerIdfunc();
+			setTimeout(async() => {
+				const playerId= await getplayerIdfunc();
 				setPlayer(playerId);
 			}, 20000);
 		}
