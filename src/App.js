@@ -32,11 +32,6 @@ function App() {
 	}, []);
 
 
-
-	useEffect(()=>{
-		window?.location?.reload();
-	},[user]);
-
 	const getplayerIdfunc= async()=>{
 		const playerId = await new Promise((resolve, reject) => {
 			OneSignal.getUserId().then(function (userId) {
@@ -58,6 +53,7 @@ function App() {
 			setTimeout(async() => {
 				const playerId= await getplayerIdfunc();
 				setPlayer(playerId);
+				window?.location?.reload();
 			}, 20000);
 		}
 
