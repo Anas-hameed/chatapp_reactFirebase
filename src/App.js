@@ -47,7 +47,6 @@ function App() {
 		const unsubscribe = onSnapshot(q, (snapshot) => {
 			setPlayerList(
 				snapshot.docs.map((doc) => ({
-					uid: doc.data().id,
 					playerId: doc.data().playerId,
 				}))
 			);
@@ -74,12 +73,13 @@ function App() {
 				console.log("player added to db");
 			}
 		}
-		else if(player){
+		else if(player){	
 			addDoc(collection(db, "users"), {
 				playerId: player,
 				date: new Date(),
 			});
 			console.log("player added to db");
+			setPlayerList([...playerList, { playerId: player }]);
 		}
 
 	}, [playerList, player,user]);
