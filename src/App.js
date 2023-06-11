@@ -66,7 +66,10 @@ function App() {
 		console.log("player::", playerList);
 		// add player to db if not exists in playerList
 		if (playerList.length > 0) {
-			const playerExists = playerList.find((p) => p.uid === user.uid);
+			let playerExists=true;
+			if(userId){
+				playerExists = playerList.find((p) => p.uid === user.uid);
+			}
 			if (!playerExists) {
 				addDoc(collection(db, "users"), {
 					id: userId,
