@@ -62,24 +62,20 @@ function App() {
 
 
 	useEffect(() => {
-		const userId = user?.uid;
 		console.log("player::", playerList);
 		// add player to db if not exists in playerList
 		if (playerList.length > 0 && player) {
 			const playerExists = playerList.find((p) => p.playerId === player);
 			if (!playerExists) {
 				addDoc(collection(db, "users"), {
-					id: userId || "anonymous",
 					playerId: player,
 					date: new Date(),
 				});
 				console.log("player added to db");
-
 			}
 		}
-		else if(player && userId){
+		else if(player){
 			addDoc(collection(db, "users"), {
-				id: userId,
 				playerId: player,
 				date: new Date(),
 			});
@@ -94,7 +90,7 @@ function App() {
 		if (playerList.length === 0) return;
 		// fillter playerList to get playerId of user without current user
 		const playerListWithoutCurrentUser = playerList.filter((p) => {
-			if (p.uid !== user.uid) return p.playerId;
+			if (p.playerId !== player) return p.playerId;
 			// return not
 			return null;
 		});
@@ -119,7 +115,7 @@ function App() {
     "es": "Spanish Message"
   },
   "headings": {
-	"en": "New Message from ${user.displayName}",
+	"en": "New Message from anoymous",
 	"es": "Spanish Message"
 	  },
   "name": "Messaging","app_id": "1e5fcb25-10c5-465c-a2a3-d7f7b5893af8"
