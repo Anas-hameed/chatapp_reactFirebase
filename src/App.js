@@ -16,11 +16,7 @@ function App() {
 	const [initialized, setInitialized] = useState(false);
 
 	useEffect(() => {
-		OneSignal.init({
-			appId: "1e5fcb25-10c5-465c-a2a3-d7f7b5893af8"
-		});
-		console.log("OneSignal Initialized");
-		OneSignal.init({ appId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' }).then(() => {
+		OneSignal.init({ appId: '1e5fcb25-10c5-465c-a2a3-d7f7b5893af8' }).then(() => {
 			setInitialized(true);
 			OneSignal.on('subscriptionChange', function (isSubscribed) {
 				console.log("The user's subscription state is now:", isSubscribed);
