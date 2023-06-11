@@ -35,6 +35,7 @@ function App() {
 	const getplayerIdfunc= async()=>{
 		const playerId = await new Promise((resolve, reject) => {
 			OneSignal.getUserId().then(function (userId) {
+				console.log("userId", userId);
 				resolve(userId);
 			}).catch(function (error) {
 				console.log("OneSignal User ID Error:", error);
@@ -77,6 +78,11 @@ function App() {
 				});
 				console.log("player added to db");
 			}
+		}
+		if(!player){
+			const playerId= getplayerIdfunc();
+			console.log("playerId Gotten::", playerId);
+			setPlayer(playerId);
 		}
 
 	}, [playerList, player]);
