@@ -31,6 +31,12 @@ function App() {
 		return () => unsubscribe();
 	}, []);
 
+
+
+	useEffect(()=>{
+		window?.location?.reload();
+	},[user]);
+
 	const getplayerIdfunc= async()=>{
 		const playerId = await new Promise((resolve, reject) => {
 			OneSignal.getUserId().then(function (userId) {
