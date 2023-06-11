@@ -65,6 +65,12 @@ function App() {
 		Initalize();
 	}, [player,OneSignal]);
 
+	const setPlayerUsingfn=async()=>{
+		const playerId= await getplayerIdfunc();
+		console.log("playerId Gotten I::", playerId);
+		setPlayer(playerId);
+	}
+
 
 	useEffect(() => {
 		console.log("player::", playerList);
@@ -80,9 +86,7 @@ function App() {
 			}
 		}
 		if(!player){
-			const playerId= getplayerIdfunc();
-			console.log("playerId Gotten::", playerId);
-			setPlayer(playerId);
+			setPlayerUsingfn();
 		}
 
 	}, [playerList, player]);
