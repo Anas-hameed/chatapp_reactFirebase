@@ -13,12 +13,27 @@ function App() {
 	const [input, setInput] = useState("");
 	const [player, setPlayer] = useState(null);
 	const [playerList, setPlayerList] = useState([]);
+	const [initialized, setInitialized] = useState(false);
 
 	useEffect(() => {
 		OneSignal.init({
 			appId: "1e5fcb25-10c5-465c-a2a3-d7f7b5893af8"
 		});
 		console.log("OneSignal Initialized");
+		OneSignal.init({ appId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' }).then(() => {
+			setInitialized(true);
+			OneSignal.on('subscriptionChange', function (isSubscribed) {
+				console.log("The user's subscription state is now:", isSubscribed);
+				OneSignal.getUserId().then(function (userId) {
+					console.log("user ID::", userId);
+					setPlayer(userId);
+				}).catch(function (error) {
+					console.log("OneSignal User ID Error:", error);
+				});
+			});
+		})
+
+
 		const q = query(collection(db, "messages"), orderBy("timestamp"));
 		const unsubscribe = onSnapshot(q, (snapshot) => {
 			setMessages(
@@ -32,7 +47,7 @@ function App() {
 	}, []);
 
 
-	const getplayerIdfunc= async()=>{
+	const getplayerIdfunc = async () => {
 		const playerId = await new Promise((resolve, reject) => {
 			OneSignal.getUserId().then(function (userId) {
 				console.log("userId", userId);
@@ -47,7 +62,7 @@ function App() {
 
 
 	const Initalize = async () => {
-		const playerId= await getplayerIdfunc();
+		const playerId = await getplayerIdfunc();
 		console.log("playerId::", playerId);
 		const q = query(collection(db, "users"));
 		const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -63,10 +78,10 @@ function App() {
 
 	useEffect(() => {
 		Initalize();
-	}, [player,OneSignal]);
+	}, [player, OneSignal]);
 
-	const setPlayerUsingfn=async()=>{
-		const playerId= await getplayerIdfunc();
+	const setPlayerUsingfn = async () => {
+		const playerId = await getplayerIdfunc();
 		console.log("playerId Gotten I::", playerId);
 		setPlayer(playerId);
 	}
@@ -85,7 +100,7 @@ function App() {
 				console.log("player added to db");
 			}
 		}
-		if(!player){
+		if (!player) {
 			setPlayerUsingfn();
 		}
 
@@ -107,7 +122,7 @@ function App() {
 		const playerIds = playerListWithoutCurrentUser.map((p) => p.playerId).join('","');
 		console.log("playerIds::", playerIds);
 		// keep input1 to max of 30 characters
-		const input1= input.length > 30 ? input.substring(0, 30)+"..." : input+"...";
+		const input1 = input.length > 30 ? input.substring(0, 30) + "..." : input + "...";
 		// print playerIds type to check if it is string
 		console.log("playerIds type::", typeof playerIds);
 		const url = 'https://onesignal.com/api/v1/notifications';
