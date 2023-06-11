@@ -47,15 +47,6 @@ function App() {
 
 	const Initalize = async () => {
 		const playerId= await getplayerIdfunc();
-		console.log("OneSignal Id::", playerId);	
-		if(!playerId){
-			OneSignal.showHttpPermissionRequest();
-			setTimeout(async() => {
-				const playerId= await getplayerIdfunc();
-				setPlayer(playerId);
-				window?.location?.reload();
-			}, 20000);
-		}
 
 		const q = query(collection(db, "users"));
 		const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -71,7 +62,7 @@ function App() {
 
 	useEffect(() => {
 		Initalize();
-	}, [player]);
+	}, [player,OneSignal]);
 
 
 	useEffect(() => {
