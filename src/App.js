@@ -82,7 +82,7 @@ function App() {
 			console.log("player added to db");
 		}
 
-	}, [playerList, player]);
+	}, [playerList, player,user]);
 
 
 
