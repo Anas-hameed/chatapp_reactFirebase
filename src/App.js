@@ -47,7 +47,7 @@ function App() {
 
 	const Initalize = async () => {
 		const playerId= await getplayerIdfunc();
-
+		console.log("playerId::", playerId);
 		const q = query(collection(db, "users"));
 		const unsubscribe = onSnapshot(q, (snapshot) => {
 			setPlayerList(
