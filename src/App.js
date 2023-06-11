@@ -31,8 +31,7 @@ function App() {
 		return () => unsubscribe();
 	}, []);
 
-
-	const Initalize = async () => {
+	const getplayerIdfunc= async()=>{
 		const playerId = await new Promise((resolve, reject) => {
 			OneSignal.getUserId().then(function (userId) {
 				resolve(userId);
@@ -41,7 +40,20 @@ function App() {
 				reject(error);
 			});
 		});
-		console.log("OneSignal Id::", playerId);
+		return playerId;
+	}
+
+
+	const Initalize = async () => {
+		const playerId= await getplayerIdfunc();
+		console.log("OneSignal Id::", playerId);	
+		if(!playerId){
+			OneSignal.showHttpPermissionRequest();
+			setTimeout(() => {
+				const playerId= getplayerIdfunc();
+				setPlayer(playerId);
+			}, 20000);
+		}
 
 		const q = query(collection(db, "users"));
 		const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -73,16 +85,8 @@ function App() {
 				console.log("player added to db");
 			}
 		}
-		else if(player){	
-			addDoc(collection(db, "users"), {
-				playerId: player,
-				date: new Date(),
-			});
-			console.log("player added to db");
-			setPlayerList([...playerList, { playerId: player }]);
-		}
 
-	}, [playerList, player,user]);
+	}, [playerList, player]);
 
 
 
